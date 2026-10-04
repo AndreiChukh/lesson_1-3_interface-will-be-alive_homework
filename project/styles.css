@@ -563,3 +563,29 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+.selection-history {
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.selection-history h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.selection-history p {
+  margin: 0;
+}
+
+.selection-history ol {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.selection-history [hidden] {
+  display: none;
+}

@@ -12,10 +12,14 @@ const visibleCount = document.querySelector("#visible-count");
 const randomButton = document.querySelector("#random-button");
 const resetButton = document.querySelector("#reset-button");
 
+const historyList = document.querySelector("#selection-history");
+const historyEmpty = document.querySelector("#history-empty");
+
 const initialTitle = detailsTitle.textContent;
 const initialDescription = detailsDescription.textContent;
 
 let selectedCard = null;
+let selectionHistory = [];
 
 function getCards() {
   return Array.from(collectionGrid.querySelectorAll(".collection-card"));
@@ -25,6 +29,18 @@ function getVisibleCards() {
   return getCards().filter(
     (card) => !card.classList.contains("collection-card--hidden")
   );
+}
+
+function renderHistory() {
+  historyList.replaceChildren();
+
+  selectionHistory.forEach((card) => {
+    const item = document.createElement("li");
+    item.textContent = card.dataset.title;
+    historyList.append(item);
+  });
+
+  historyEmpty.hidden = selectionHistory.length > 0;
 }
 
 function clearSelection() {
@@ -84,6 +100,9 @@ function selectRandomCard() {
 function resetCollection() {
   applyFilter("all");
   clearSelection();
+
+  selectionHistory = [];
+  renderHistory();
 }
 
 function selectCard(card) {
@@ -101,6 +120,13 @@ function selectCard(card) {
   selectedCard = card;
   detailsTitle.textContent = card.dataset.title;
   detailsDescription.textContent = card.dataset.description;
+
+  selectionHistory = [
+    card,
+    ...selectionHistory.filter((item) => item !== card)
+  ].slice(0, 3);
+
+  renderHistory();
 
   detailsPanel.classList.remove("details-panel--pulse");
   void detailsPanel.offsetWidth;
@@ -134,3 +160,4 @@ randomButton.addEventListener("click", selectRandomCard);
 resetButton.addEventListener("click", resetCollection);
 
 applyFilter("all");
+renderHistory();
