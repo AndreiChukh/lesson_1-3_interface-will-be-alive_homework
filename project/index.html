@@ -5,30 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Учебный проект: интерактивная коллекция на JavaScript и DOM API."
+      content="Коллекция языков программирования: backend, frontend и системная разработка."
     />
-    <title>Интерактивная коллекция — ДЗ 3</title>
+    <title>Языки программирования - Чухарев Андрей</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
+
   <body>
     <header class="site-header">
       <a class="brand" href="#collection" aria-label="К началу коллекции">
-        <span class="brand__index">INDEX</span>
-        <span class="brand__count">/ 06</span>
+        <span class="brand__index">CODE</span>
+        <span class="brand__count">/ 07</span>
       </a>
 
-      <p class="site-header__course">JavaScript · DOM · события</p>
-      <p class="site-header__status"><span aria-hidden="true"></span> Стартовый проект</p>
+      <p class="site-header__course">Языки программирования</p>
+      <p class="site-header__status">
+        <span aria-hidden="true"></span> Чухарев Андрей
+      </p>
     </header>
 
     <main class="page" id="collection">
       <section class="intro" aria-labelledby="page-title">
-        <p class="intro__eyebrow">Демонстрационная тема</p>
-        <h1 id="page-title">Шесть идей,<br />которые <em>изменили web</em></h1>
+        <p class="intro__eyebrow">Языки для разных задач</p>
+
+        <h1 id="page-title">
+          Языки,<br />на которых <em>пишут код</em>
+        </h1>
+
         <p class="intro__lead">
-          Выберите карточку, отфильтруйте коллекцию или доверьте выбор случаю.
-          Пока это статичная страница — поведение появится после вашей реализации.
+          Познакомьтесь с языками для разных задач. Выберите карточку,
+          отфильтруйте коллекцию по направлению или получите случайный вариант.
+          Категория показывает один из сценариев применения языка.
         </p>
       </section>
 
@@ -44,34 +52,37 @@
               >
                 Все
               </button>
+
               <button
                 class="filter-button"
                 type="button"
-                data-filter="foundation"
+                data-filter="backend"
                 aria-pressed="false"
               >
-                Основа
+                Backend
               </button>
+
               <button
                 class="filter-button"
                 type="button"
-                data-filter="interface"
+                data-filter="frontend"
                 aria-pressed="false"
               >
-                Интерфейс
+                Frontend
               </button>
+
               <button
                 class="filter-button"
                 type="button"
-                data-filter="platform"
+                data-filter="system"
                 aria-pressed="false"
               >
-                Платформа
+                Системные
               </button>
             </div>
 
             <p class="result-count" aria-live="polite">
-              Показано карточек: <strong id="visible-count">6</strong>
+              Показано карточек: <strong id="visible-count">7</strong>
             </p>
           </div>
 
@@ -79,103 +90,141 @@
             <button
               class="collection-card"
               type="button"
-              data-title="HTML"
-              data-description="Язык разметки, который задает смысл и структуру содержимого web-страницы."
-              data-category="foundation"
+              data-title="Java"
+              data-description="Java - язык со статической типизацией. Программы выполняются на виртуальной машине JVM. Для создания серверных приложений часто используют Spring Boot."
+              data-category="backend"
               aria-controls="details-panel"
               aria-pressed="false"
             >
               <span class="collection-card__meta">
-                <span>01</span><span>Основа</span>
+                <span>01</span>
+                <span>Backend</span>
               </span>
-              <span class="collection-card__symbol" aria-hidden="true">&lt;/&gt;</span>
-              <span class="collection-card__title">HTML</span>
-              <span class="collection-card__summary">Структура и смысл документа</span>
+              <span class="collection-card__symbol" aria-hidden="true">J</span>
+              <span class="collection-card__title">Java</span>
+              <span class="collection-card__summary">
+                Серверные приложения и JVM
+              </span>
             </button>
 
             <button
               class="collection-card"
               type="button"
-              data-title="CSS"
-              data-description="Язык стилей, который управляет композицией, оформлением и адаптацией интерфейса."
-              data-category="interface"
+              data-title="Python"
+              data-description="Python - язык с динамической типизацией и лаконичным синтаксисом. Подходит для автоматизации, анализа данных и серверных приложений."
+              data-category="backend"
               aria-controls="details-panel"
               aria-pressed="false"
             >
               <span class="collection-card__meta">
-                <span>02</span><span>Интерфейс</span>
+                <span>02</span>
+                <span>Backend</span>
               </span>
-              <span class="collection-card__symbol" aria-hidden="true">{ }</span>
-              <span class="collection-card__title">CSS</span>
-              <span class="collection-card__summary">Композиция и визуальный язык</span>
+              <span class="collection-card__symbol" aria-hidden="true">Py</span>
+              <span class="collection-card__title">Python</span>
+              <span class="collection-card__summary">
+                Автоматизация, данные и сервер
+              </span>
             </button>
 
             <button
               class="collection-card"
               type="button"
               data-title="JavaScript"
-              data-description="Язык программирования, который добавляет странице состояние и реакцию на действия пользователя."
-              data-category="interface"
+              data-description="JavaScript добавляет web-страницам интерактивность: обработку событий и изменение содержимого через DOM."
+              data-category="frontend"
               aria-controls="details-panel"
               aria-pressed="false"
             >
               <span class="collection-card__meta">
-                <span>03</span><span>Интерфейс</span>
+                <span>03</span>
+                <span>Frontend</span>
               </span>
               <span class="collection-card__symbol" aria-hidden="true">JS</span>
               <span class="collection-card__title">JavaScript</span>
-              <span class="collection-card__summary">Поведение и состояние</span>
+              <span class="collection-card__summary">
+                События и интерактивные страницы
+              </span>
             </button>
 
             <button
               class="collection-card"
               type="button"
-              data-title="DOM"
-              data-description="Объектное представление документа, через которое JavaScript читает и изменяет страницу."
-              data-category="foundation"
+              data-title="TypeScript"
+              data-description="TypeScript расширяет JavaScript системой типов. Проверка типов помогает находить ошибки до запуска программы. Код TypeScript преобразуется в JavaScript для выполнения в браузере или на сервере."
+              data-category="frontend"
               aria-controls="details-panel"
               aria-pressed="false"
             >
               <span class="collection-card__meta">
-                <span>04</span><span>Основа</span>
+                <span>04</span>
+                <span>Frontend</span>
               </span>
-              <span class="collection-card__symbol" aria-hidden="true">◇</span>
-              <span class="collection-card__title">DOM</span>
-              <span class="collection-card__summary">Страница как дерево объектов</span>
+              <span class="collection-card__symbol" aria-hidden="true">TS</span>
+              <span class="collection-card__title">TypeScript</span>
+              <span class="collection-card__summary">
+                JavaScript с проверкой типов
+              </span>
             </button>
 
             <button
               class="collection-card"
               type="button"
-              data-title="HTTP"
-              data-description="Протокол обмена данными, который связывает браузер с сервером и другими ресурсами сети."
-              data-category="platform"
+              data-title="C"
+              data-description="C - компилируемый язык, позволяющий работать с указателями и управлять памятью. Его применяют в операционных системах, драйверах и программах для встроенных устройств."
+              data-category="system"
               aria-controls="details-panel"
               aria-pressed="false"
             >
               <span class="collection-card__meta">
-                <span>05</span><span>Платформа</span>
+                <span>05</span>
+                <span>Системные</span>
               </span>
-              <span class="collection-card__symbol" aria-hidden="true">↗</span>
-              <span class="collection-card__title">HTTP</span>
-              <span class="collection-card__summary">Обмен данными в сети</span>
+              <span class="collection-card__symbol" aria-hidden="true">C</span>
+              <span class="collection-card__title">C</span>
+              <span class="collection-card__summary">
+                Память, драйверы и устройства
+              </span>
             </button>
 
             <button
               class="collection-card"
               type="button"
-              data-title="Web API"
-              data-description="Набор возможностей браузера: события, навигация, мультимедиа, сеть и работа с устройством."
-              data-category="platform"
+              data-title="Rust"
+              data-description="Rust - компилируемый язык с системой владения и заимствования. Компилятор проверяет многие ошибки работы с памятью. Язык используют для системных инструментов и производительных приложений."
+              data-category="system"
               aria-controls="details-panel"
               aria-pressed="false"
             >
               <span class="collection-card__meta">
-                <span>06</span><span>Платформа</span>
+                <span>06</span>
+                <span>Системные</span>
               </span>
-              <span class="collection-card__symbol" aria-hidden="true">＋</span>
-              <span class="collection-card__title">Web API</span>
-              <span class="collection-card__summary">Возможности браузерной среды</span>
+              <span class="collection-card__symbol" aria-hidden="true">R</span>
+              <span class="collection-card__title">Rust</span>
+              <span class="collection-card__summary">
+                Владение и безопасность памяти
+              </span>
+            </button>
+
+            <button
+              class="collection-card"
+              type="button"
+              data-title="C++"
+              data-description="C++ - компилируемый язык с поддержкой объектно-ориентированного и обобщённого программирования. Его используют для системного ПО, игровых движков и производительных приложений."
+              data-category="system"
+              aria-controls="details-panel"
+              aria-pressed="false"
+            >
+              <span class="collection-card__meta">
+                <span>07</span>
+                <span>Системные</span>
+              </span>
+              <span class="collection-card__symbol" aria-hidden="true">C++</span>
+              <span class="collection-card__title">C++</span>
+              <span class="collection-card__summary">
+                Системное ПО и игровые движки
+              </span>
             </button>
           </div>
         </div>
@@ -187,42 +236,65 @@
           aria-live="polite"
         >
           <div class="details-panel__top">
-            <span class="details-panel__label">Выбранный элемент</span>
+            <span class="details-panel__label">Выбранный язык</span>
             <span class="details-panel__marker" aria-hidden="true"></span>
           </div>
 
           <div class="details-panel__content">
-            <p class="details-panel__number" aria-hidden="true">DETAIL / 01</p>
-            <h2 id="details-title">Выберите карточку</h2>
+            <p class="details-panel__number" aria-hidden="true">
+              ПОДРОБНОСТИ
+            </p>
+
+            <h2 id="details-title">Выберите язык</h2>
+
             <p id="details-description">
-              Здесь появится описание выбранного элемента. Используйте данные из
-              атрибутов карточки, не дублируйте тексты в JavaScript.
+              Нажмите на карточку, чтобы узнать о языке и его применении.
+              Фильтры помогут выбрать направление разработки.
             </p>
           </div>
 
+          <section class="selection-history" aria-labelledby="history-title">
+            <h3 id="history-title">Последние выборы</h3>
+            <p id="history-empty">Пока ничего не выбрано.</p>
+            <ol id="selection-history"></ol>
+          </section>
+
           <div class="details-panel__actions">
-            <button class="action-button action-button--primary" id="random-button" type="button">
+            <button
+              class="action-button action-button--primary"
+              id="random-button"
+              type="button"
+            >
               Случайный выбор <span aria-hidden="true">↗</span>
             </button>
-            <button class="action-button" id="reset-button" type="button">Сбросить</button>
+
+            <button
+              class="action-button"
+              id="reset-button"
+              type="button"
+            >
+              Сбросить
+            </button>
           </div>
         </aside>
       </section>
 
       <section class="assignment-note" aria-labelledby="assignment-title">
-        <p class="assignment-note__index">HOMEWORK / 03</p>
+        <p class="assignment-note__index">КАК ВЫБРАТЬ</p>
+
         <div>
-          <h2 id="assignment-title">Ваш код должен выдерживать сочетание сценариев.</h2>
+          <h2 id="assignment-title">Начните с задачи</h2>
           <p>
-            Проверьте не только каждый клик отдельно, но и последовательности:
-            выбор → фильтр → случайный выбор → сброс.
+            Для серверного приложения можно изучить Java или Python, для
+            интерактивной страницы - JavaScript. Возможности языков шире этих
+            примеров: один язык может применяться в нескольких направлениях.
           </p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>НИУ ВШЭ · Разработка web-интерфейсов</p>
+      <p>Чухарев Андрей · Языки программирования</p>
       <a href="#collection">Наверх ↑</a>
     </footer>
   </body>
