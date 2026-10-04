@@ -159,5 +159,53 @@ filterButtons.forEach((button) => {
 randomButton.addEventListener("click", selectRandomCard);
 resetButton.addEventListener("click", resetCollection);
 
+document.addEventListener("keydown", (event) => {
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+
+    const focusedCard = event.target.closest(".collection-card");
+
+    resetCollection();
+
+    if (focusedCard) {
+      const allButton = filterButtons.find(
+        (button) => button.dataset.filter === "all"
+      );
+      allButton.focus();
+    }
+
+    return;
+  }
+
+  if (!event.target.closest(".workspace") || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) {
+    return;
+  }
+
+  const visibleCards = getVisibleCards();
+
+  if (visibleCards.length === 0) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const currentIndex = visibleCards.indexOf(selectedCard);
+  let nextIndex;
+
+  if (currentIndex === -1) {
+    nextIndex = event.key === "ArrowRight" ? 0 : visibleCards.length - 1;
+  } else {
+    const direction = event.key === "ArrowRight" ? 1 : -1;
+
+    nextIndex = (currentIndex + direction + visibleCards.length) % visibleCards.length;
+  }
+
+  const nextCard = visibleCards[nextIndex];
+
+  selectCard(nextCard);
+  nextCard.focus();
+});
+
 applyFilter("all");
 renderHistory();
