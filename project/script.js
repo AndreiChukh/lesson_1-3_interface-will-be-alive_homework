@@ -5,10 +5,61 @@ const detailsPanel = document.querySelector("#details-panel");
 const detailsTitle = document.querySelector("#details-title");
 const detailsDescription = document.querySelector("#details-description");
 
+const filterButtons = Array.from(
+  document.querySelectorAll(".filter-button")
+);
+const visibleCount = document.querySelector("#visible-count");
+
+const initialTitle = detailsTitle.textContent;
+const initialDescription = detailsDescription.textContent;
+
 let selectedCard = null;
 
 function getCards() {
   return Array.from(collectionGrid.querySelectorAll(".collection-card"));
+}
+
+function getVisibleCards() {
+  return getCards().filter(
+    (card) => !card.classList.contains("collection-card--hidden")
+  );
+}
+
+function clearSelection() {
+  getCards().forEach((card) => {
+    card.classList.remove("collection-card--selected");
+    card.setAttribute("aria-pressed", "false");
+  });
+
+  selectedCard = null;
+  detailsTitle.textContent = initialTitle;
+  detailsDescription.textContent = initialDescription;
+  detailsPanel.classList.remove("details-panel--pulse");
+}
+
+function applyFilter(category) {
+  filterButtons.forEach((button) => {
+    const isActive = button.dataset.filter === category;
+
+    button.classList.toggle("filter-button--active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  getCards().forEach((card) => {
+    const isHidden =
+      category !== "all" && card.dataset.category !== category;
+
+    card.classList.toggle("collection-card--hidden", isHidden);
+  });
+
+  if (
+    selectedCard &&
+    selectedCard.classList.contains("collection-card--hidden")
+  ) {
+    clearSelection();
+  }
+
+  visibleCount.textContent = getVisibleCards().length;
 }
 
 function selectCard(card) {
@@ -18,6 +69,7 @@ function selectCard(card) {
 
   getCards().forEach((item) => {
     const isSelected = item === card;
+
     item.classList.toggle("collection-card--selected", isSelected);
     item.setAttribute("aria-pressed", String(isSelected));
   });
@@ -47,3 +99,11 @@ detailsPanel.addEventListener("animationend", (event) => {
     detailsPanel.classList.remove("details-panel--pulse");
   }
 });
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    applyFilter(button.dataset.filter);
+  });
+});
+
+applyFilter("all");
