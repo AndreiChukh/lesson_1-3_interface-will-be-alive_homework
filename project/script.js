@@ -1,19 +1,49 @@
 "use strict";
 
-// ДЗ 3. Интерактивная коллекция.
-// Выполняйте практические этапы из docs/HOME_WORK.md по порядку.
-// Не пытайтесь написать весь файл за один раз: после каждого этапа проверяйте
-// связанный сценарий в браузере и фиксируйте рабочее состояние коммитом.
+const collectionGrid = document.querySelector(".collection-grid");
+const detailsPanel = document.querySelector("#details-panel");
+const detailsTitle = document.querySelector("#details-title");
+const detailsDescription = document.querySelector("#details-description");
 
-// Этап 3. Найдите карточки и элементы панели подробностей.
-// Реализуйте одну общую функцию выбора карточки.
+let selectedCard = null;
 
-// Этап 4. Найдите кнопки фильтров.
-// Показывайте подходящие карточки, обновляйте активную кнопку и счетчик.
-// Учтите случай, когда новый фильтр скрывает выбранную карточку.
+function getCards() {
+  return Array.from(collectionGrid.querySelectorAll(".collection-card"));
+}
 
-// Этап 5. Реализуйте случайный выбор среди видимых карточек.
-// Затем реализуйте полный сброс интерфейса.
+function selectCard(card) {
+  if (!card || card.classList.contains("collection-card--hidden")) {
+    return;
+  }
 
-// Этап 6. Запускайте подготовленную CSS-анимацию через класс.
-// Не дублируйте оформление в script.js.
+  getCards().forEach((item) => {
+    const isSelected = item === card;
+    item.classList.toggle("collection-card--selected", isSelected);
+    item.setAttribute("aria-pressed", String(isSelected));
+  });
+
+  selectedCard = card;
+  detailsTitle.textContent = card.dataset.title;
+  detailsDescription.textContent = card.dataset.description;
+
+  detailsPanel.classList.remove("details-panel--pulse");
+  void detailsPanel.offsetWidth;
+  detailsPanel.classList.add("details-panel--pulse");
+}
+
+collectionGrid.addEventListener("click", (event) => {
+  const card = event.target.closest(".collection-card");
+
+  if (card && collectionGrid.contains(card)) {
+    selectCard(card);
+  }
+});
+
+detailsPanel.addEventListener("animationend", (event) => {
+  if (
+    event.target === detailsPanel &&
+    event.animationName === "panel-pulse"
+  ) {
+    detailsPanel.classList.remove("details-panel--pulse");
+  }
+});
