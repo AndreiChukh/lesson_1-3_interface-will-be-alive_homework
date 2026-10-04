@@ -10,6 +10,7 @@ const filterButtons = Array.from(
 );
 const visibleCount = document.querySelector("#visible-count");
 const randomButton = document.querySelector("#random-button");
+const resetButton = document.querySelector("#reset-button");
 
 const initialTitle = detailsTitle.textContent;
 const initialDescription = detailsDescription.textContent;
@@ -80,6 +81,11 @@ function selectRandomCard() {
   selectCard(candidates[index]);
 }
 
+function resetCollection() {
+  applyFilter("all");
+  clearSelection();
+}
+
 function selectCard(card) {
   if (!card || card.classList.contains("collection-card--hidden")) {
     return;
@@ -125,5 +131,6 @@ filterButtons.forEach((button) => {
 });
 
 randomButton.addEventListener("click", selectRandomCard);
+resetButton.addEventListener("click", resetCollection);
 
 applyFilter("all");
